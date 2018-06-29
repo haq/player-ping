@@ -1,0 +1,4 @@
+name: PlayerPing
+version: 1.0
+main: me.ihaq.playerping.PlayerPing
+description: Allows you to ping players.
