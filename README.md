@@ -1,3 +1,5 @@
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg) ](LICENSE)
+
 # Player Ping
 Allows you to ping players.
 
