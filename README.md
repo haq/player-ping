@@ -4,7 +4,7 @@
 Allows you to ping players by typing their name in chat.
 
 ### Default Config
-```yml
+```yaml
 # Plays a sound for the player if he is pinged.
 sound: true
 
