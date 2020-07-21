@@ -1,7 +1,7 @@
 package me.ihaq.playerping;
 
-import me.ihaq.configmanager.ConfigManager;
-import me.ihaq.configmanager.data.ConfigValue;
+import me.ihaq.keeper.Keeper;
+import me.ihaq.keeper.data.ConfigValue;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -20,27 +20,46 @@ public class PlayerPing extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        new Keeper(this).register(this).load();
         Bukkit.getPluginManager().registerEvents(this, this);
-        new ConfigManager(this).register(this).load();
     }
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
+        // loop through the online players to find the player pinged
         Bukkit.getOnlinePlayers().forEach(player -> {
             if (e.getMessage().contains(player.getName())) {
                 if (changeColor) {
                     String lastColor = ChatColor.getLastColors(e.getMessage());
-                    e.setMessage(e.getMessage().replaceAll(player.getName(), ChatColor.GOLD + player.getName() + (lastColor.isEmpty() ? ChatColor.RESET : lastColor)));
+                    e.setMessage(e.getMessage().replaceAll(
+                            player.getName(), ChatColor.GOLD + player.getName() + (lastColor.isEmpty() ? ChatColor.RESET : lastColor)
+                    ));
                 }
                 if (sound) {
-                    if (Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.12")) {
-                        player.playSound(player.getEyeLocation(), Sound.valueOf("UI_BUTTON_CLICK"), 1, 1);
-                    } else {
-                        player.playSound(player.getEyeLocation(), Sound.valueOf("CLICK"), 1, 1);
+                    Sound buttonSound = getButtonClick();
+
+                    // unable to get button click sound
+                    if (buttonSound == null) {
+                        return;
                     }
+
+                    player.playSound(player.getEyeLocation(), buttonSound, 1, 1);
                 }
             }
         });
+    }
+
+    private Sound getButtonClick() {
+        try {
+            return Sound.valueOf("UI_BUTTON_CLICK");
+        } catch (IllegalArgumentException e) {
+            try {
+                return Sound.valueOf("UI_BUTTON_CLICK");
+            } catch (IllegalArgumentException e1) {
+                e1.printStackTrace();
+                return null;
+            }
+        }
     }
 
 }
