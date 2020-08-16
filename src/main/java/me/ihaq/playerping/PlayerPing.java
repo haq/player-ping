@@ -13,10 +13,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PlayerPing extends JavaPlugin implements Listener {
 
     @ConfigValue("sound")
-    private boolean sound;
+    private boolean sound = true;
 
     @ConfigValue("change_color")
-    private boolean changeColor;
+    private boolean changeColor = true;
 
     @Override
     public void onEnable() {
