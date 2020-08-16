@@ -1,7 +1,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg) ](LICENSE)
 
 # player-ping
-Allows you to ping players by typing their name in chat.
+Allows you to ping players by typing their name in the chat.
 
 ### Default Config
 ```yaml
