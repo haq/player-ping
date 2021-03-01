@@ -1,4 +1,4 @@
-package me.ihaq.playerping;
+package me.affanhaq.playerping;
 
 import me.affanhaq.keeper.Keeper;
 import me.affanhaq.keeper.data.ConfigFile;
