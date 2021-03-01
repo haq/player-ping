@@ -1,7 +1,8 @@
-package me.ihaq.playerping;
+package me.affanhaq.playerping;
 
-import me.ihaq.keeper.Keeper;
-import me.ihaq.keeper.data.ConfigValue;
+import me.affanhaq.keeper.Keeper;
+import me.affanhaq.keeper.data.ConfigFile;
+import me.affanhaq.keeper.data.ConfigValue;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -10,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@ConfigFile("config.yml")
 public class PlayerPing extends JavaPlugin implements Listener {
 
     @ConfigValue("sound")
